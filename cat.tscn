@@ -1,20 +1,66 @@
-[gd_scene load_steps=4 format=3 uid="uid://by4p50alagke4"]
+[gd_scene load_steps=9 format=3 uid="uid://by4p50alagke4"]
 
 [ext_resource type="Script" path="res://Cat.gd" id="1_2e2hc"]
-[ext_resource type="Texture2D" uid="uid://cjw2oh0ll522v" path="res://sPlayer/sBasic.png" id="2_vvwb8"]
+[ext_resource type="Texture2D" uid="uid://cpeldqm5jfgsn" path="res://assets/cats/idle/Idle.png" id="2_q8m2y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t73xm"]
-size = Vector2(30, 24)
+size = Vector2(30, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln024"]
+atlas = ExtResource("2_q8m2y")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u7b4"]
+atlas = ExtResource("2_q8m2y")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhq0f"]
+atlas = ExtResource("2_q8m2y")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5e1u"]
+atlas = ExtResource("2_q8m2y")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_c852n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ln024")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u7b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhq0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5e1u")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]
 
 [node name="Cat" type="CharacterBody2D"]
+input_pickable = true
 script = ExtResource("1_2e2hc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_t73xm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -4.76837e-07)
-scale = Vector2(0.84375, 0.71875)
-texture = ExtResource("2_vvwb8")
+[node name="PopupMenu" type="PopupMenu" parent="."]
 
-[connection signal="input_event" from="." to="." method="_on_input_event"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(6, -16)
+scale = Vector2(1.04167, 1.04167)
+sprite_frames = SubResource("SpriteFrames_c852n")
+animation = &"Idle"
+autoplay = "Idle"
+frame = 3
+frame_progress = 0.599608
+
+[connection signal="input_event" from="." to="." method="input_event"]
+[connection signal="id_pressed" from="PopupMenu" to="." method="_on_popup_menu_id_pressed"]
+[connection signal="index_pressed" from="PopupMenu" to="." method="_on_popup_menu_index_pressed"]
