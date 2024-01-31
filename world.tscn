@@ -7,8 +7,8 @@
 [node name="World" type="Node2D"]
 
 [node name="Summer1" type="Sprite2D" parent="."]
-position = Vector2(457.75, 326.125)
-scale = Vector2(0.607856, 0.50135)
+position = Vector2(457.75, 324.5)
+scale = Vector2(0.607856, 0.503858)
 texture = ExtResource("2_1ot4f")
 
 [node name="Cat" parent="." instance=ExtResource("1_mr0j3")]
