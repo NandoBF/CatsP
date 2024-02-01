@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 @export var cat_speed = 300 #pixels/sec
+@export var color = "Blue"
 @onready var _pm = $PopupMenu #Popup menu
+@onready var _sprite = $AnimatedSprite2D #Sprites
 var move_to
 var _last_mouse_position # variable that saves the last mouse position
 var screen_size # saves the screen size
@@ -16,6 +18,7 @@ enum PopupIds {
 func _ready():
 	screen_size = get_viewport_rect().size
 	move_to = position
+	_sprite.animation = "Idle"
 	
 	#Adds items to the popup menu
 	_pm.add_item("Test1", PopupIds.test)
@@ -32,7 +35,7 @@ func _process(delta):
 	
 	cat_movement(delta)
 	position = position.clamp(Vector2.ZERO, screen_size)
-	#print (selected)
+	#print (direction)
 
 # Called whenever there's an input
 func input_event(_viewport, event, _shape_idx):
@@ -62,8 +65,17 @@ func _on_popup_menu_index_pressed(index):
 
 func cat_movement(delta):
 	var speed
+	
 	if position == move_to:
 		speed = 0
+		_sprite.speed_scale = 1
+		_sprite.animation = "Idle"
 	else:
-		speed = 50
+		if move_to.x > position.x:
+			_sprite.flip_h = false
+		else:
+			_sprite.flip_h = true
+		speed = 75
+		_sprite.animation = "Running"
+		_sprite.speed_scale = speed/50
 		position = position.move_toward(move_to, speed * delta)

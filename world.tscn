@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlt85eu84mk2d"]
+[gd_scene load_steps=5 format=3 uid="uid://dlt85eu84mk2d"]
 
 [ext_resource type="PackedScene" uid="uid://by4p50alagke4" path="res://cat.tscn" id="1_mr0j3"]
 [ext_resource type="Texture2D" uid="uid://db1u4f2o5w8km" path="res://assets/bg/Summer1.png" id="2_1ot4f"]
-[ext_resource type="Script" path="res://CameraWorld.gd" id="3_t6uhc"]
+[ext_resource type="PackedScene" uid="uid://dip2e2ykhdg54" path="res://player.tscn" id="3_stess"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yhci"]
+size = Vector2(1185, 154)
 
 [node name="World" type="Node2D"]
 
@@ -12,14 +15,13 @@ scale = Vector2(0.607856, 0.503858)
 texture = ExtResource("2_1ot4f")
 
 [node name="Cat" parent="." instance=ExtResource("1_mr0j3")]
-position = Vector2(317, 178)
+position = Vector2(237, 466)
 
-[node name="CameraWorld" type="Camera2D" parent="."]
-position = Vector2(576, 320)
-zoom = Vector2(5, 5)
-limit_top = 1000000000
-limit_bottom = -1000000
-limit_smoothed = true
-position_smoothing_speed = 1.0
-rotation_smoothing_speed = 1.0
-script = ExtResource("3_t6uhc")
+[node name="Player" parent="." instance=ExtResource("3_stess")]
+
+[node name="Area2D" type="Area2D" parent="."]
+modulate = Color(1, 0.996078, 1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(582.5, 587)
+shape = SubResource("RectangleShape2D_3yhci")

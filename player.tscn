@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dip2e2ykhdg54"]
+
+[ext_resource type="Script" path="res://CameraWorld.gd" id="1_l1otc"]
+
+[node name="Player" type="Node2D"]
+
+[node name="CameraWorld" type="Camera2D" parent="."]
+position = Vector2(576, 320)
+zoom = Vector2(5, 5)
+limit_top = 1000000000
+limit_bottom = -1000000
+limit_smoothed = true
+position_smoothing_speed = 1.0
+rotation_smoothing_speed = 1.0
+script = ExtResource("1_l1otc")
