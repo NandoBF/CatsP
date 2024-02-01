@@ -79,3 +79,7 @@ func cat_movement(delta):
 		_sprite.animation = "Running"
 		_sprite.speed_scale = speed/50
 		position = position.move_toward(move_to, speed * delta)
+
+
+func _on_floor_body_entered(body):
+	move_to = position
