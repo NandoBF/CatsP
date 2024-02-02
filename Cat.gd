@@ -18,7 +18,7 @@ enum PopupIds {
 func _ready():
 	screen_size = get_viewport_rect().size
 	move_to = position
-	_sprite.animation = "Idle" + color
+	_sprite.play("Idle" + color)
 	
 	#Adds items to the popup menu
 	_pm.add_item("Orange", PopupIds.colorOrange)
@@ -69,14 +69,14 @@ func cat_movement(delta):
 	if position == move_to:
 		speed = 0
 		_sprite.speed_scale = 1
-		_sprite.animation = "Idle" + color
+		_sprite.play("Idle" + color)
 	else:
 		if move_to.x > position.x:
 			_sprite.flip_h = false
 		else:
 			_sprite.flip_h = true
 		speed = 75
-		_sprite.animation = "Running" + color
+		_sprite.play("Running" + color)
 		_sprite.speed_scale = speed/50
 		position = position.move_toward(move_to, speed * delta)
 
