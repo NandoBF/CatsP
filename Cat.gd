@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var cat_speed = 300 #pixels/sec
-@export var color = "Blue"
+@export var color = "DarkBlue"
 @onready var _pm = $PopupMenu #Popup menu
 @onready var _sprite = $AnimatedSprite2D #Sprites
 var move_to
@@ -10,7 +10,7 @@ var screen_size # saves the screen size
 var selected = false # Bool that says if the cat is selected
 
 enum PopupIds {
-	test
+	colorOrange
 }
 
 
@@ -18,10 +18,10 @@ enum PopupIds {
 func _ready():
 	screen_size = get_viewport_rect().size
 	move_to = position
-	_sprite.animation = "Idle"
+	_sprite.animation = "Idle" + color
 	
 	#Adds items to the popup menu
-	_pm.add_item("Test1", PopupIds.test)
+	_pm.add_item("Orange", PopupIds.colorOrange)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -55,8 +55,8 @@ func input_event(_viewport, event, _shape_idx):
 
 func _on_popup_menu_id_pressed(id):
 	match id:
-		PopupIds.test:
-			print("it works")
+		PopupIds.colorOrange:
+			color = "Orange"
 
 
 func _on_popup_menu_index_pressed(index):
@@ -69,14 +69,14 @@ func cat_movement(delta):
 	if position == move_to:
 		speed = 0
 		_sprite.speed_scale = 1
-		_sprite.animation = "Idle"
+		_sprite.animation = "Idle" + color
 	else:
 		if move_to.x > position.x:
 			_sprite.flip_h = false
 		else:
 			_sprite.flip_h = true
 		speed = 75
-		_sprite.animation = "Running"
+		_sprite.animation = "Running" + color
 		_sprite.speed_scale = speed/50
 		position = position.move_toward(move_to, speed * delta)
 

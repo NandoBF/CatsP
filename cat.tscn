@@ -1,26 +1,43 @@
-[gd_scene load_steps=16 format=3 uid="uid://by4p50alagke4"]
+[gd_scene load_steps=21 format=3 uid="uid://by4p50alagke4"]
 
 [ext_resource type="Script" path="res://Cat.gd" id="1_2e2hc"]
-[ext_resource type="Texture2D" uid="uid://b8tqs053x4y6u" path="res://assets/cats/idle/Idle.png" id="2_q8m2y"]
+[ext_resource type="Texture2D" uid="uid://b8tqs053x4y6u" path="res://assets/cats/idle/IdleDarkBlue.png" id="2_q8m2y"]
 [ext_resource type="Texture2D" uid="uid://ci2kwwndr7o8g" path="res://assets/cats/Running/Walk.png" id="3_d2hv1"]
+[ext_resource type="Texture2D" uid="uid://dfufyoaqi5m0n" path="res://assets/cats/idle/IdleOrange.png" id="3_gltx5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t73xm"]
 size = Vector2(30, 23)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ln024"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0tr0"]
 atlas = ExtResource("2_q8m2y")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4u7b4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdk24"]
 atlas = ExtResource("2_q8m2y")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jhq0f"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_84d5i"]
 atlas = ExtResource("2_q8m2y")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r5e1u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8roja"]
 atlas = ExtResource("2_q8m2y")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n2sv1"]
+atlas = ExtResource("3_gltx5")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irmnv"]
+atlas = ExtResource("3_gltx5")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucd08"]
+atlas = ExtResource("3_gltx5")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lla1a"]
+atlas = ExtResource("3_gltx5")
 region = Rect2(144, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ppu3v"]
@@ -51,20 +68,37 @@ region = Rect2(240, 0, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ln024")
+"texture": SubResource("AtlasTexture_v0tr0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4u7b4")
+"texture": SubResource("AtlasTexture_qdk24")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jhq0f")
+"texture": SubResource("AtlasTexture_84d5i")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r5e1u")
+"texture": SubResource("AtlasTexture_8roja")
 }],
 "loop": true,
-"name": &"Idle",
-"speed": 4.0
+"name": &"IdleDarkBlue",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n2sv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irmnv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucd08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lla1a")
+}],
+"loop": true,
+"name": &"IdleOrange",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -86,7 +120,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_70v2e")
 }],
 "loop": true,
-"name": &"Running",
+"name": &"RunningDarkBlue",
 "speed": 6.0
 }]
 
@@ -104,8 +138,8 @@ shape = SubResource("RectangleShape2D_t73xm")
 position = Vector2(6, -16)
 scale = Vector2(1.04167, 1.04167)
 sprite_frames = SubResource("SpriteFrames_c852n")
-animation = &"Running"
-autoplay = "Idle"
+animation = &"IdleOrange"
+autoplay = "IdleDarkBlue"
 
 [connection signal="input_event" from="." to="." method="input_event"]
 [connection signal="id_pressed" from="PopupMenu" to="." method="_on_popup_menu_id_pressed"]
