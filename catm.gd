@@ -19,7 +19,7 @@ enum PopupIds {
 
 
 func _ready():
-	finished = false
+	finished = true
 	get_node("Timer").start()
 	screen_size = get_viewport_rect().size
 	move_to = position
@@ -31,12 +31,17 @@ func _ready():
 	
 func _physics_process(delta):
 	var dir
+	
+	#if not _nav_agent.is_target_reachable():
+		#move_to = position
+		
 	if Input.is_action_pressed("Right_Click") and selected:
 		finished = false
 		selected = false
 		move_to = get_global_mouse_position()
 	#dir = self.position.direction_to(move_to) 
-	if not finished:
+	
+	if not finished and _nav_agent.is_target_reachable():
 		dir = (_nav_agent.get_next_path_position() - global_position).normalized()
 		translate(dir * delta * speed)
 		if dir.x > 0: _sprite.flip_h = false
@@ -44,33 +49,20 @@ func _physics_process(delta):
 		_sprite.play("Running" + color)
 		_sprite.speed_scale = speed/50
 	else:
+		move_to = position
 		_sprite.speed_scale = 1
 		_sprite.play("Idle" + color)
 		
-	if self.position.distance_to(move_to) < 0.1:
-		finished = true
-	if not is_on_floor():
-		velocity.y = 350
-		move_and_slide()
-	position = position.clamp(Vector2.ZERO, screen_size)
+	
 	#if self.position.distance_to(move_to) < 1:
-		#get_node("Timer").stop()
-		#_sprite.speed_scale = 1
-		#_sprite.play("Idle" + color)
-		#velocity = Vector2.ZERO
-	#else: 
-	#if finished:
-		#_sprite.speed_scale = 1
-		#_sprite.play("Idle" + color)
-	#if self.position.distance_to(move_to) < 1:
-		#dir = Vector2.ZERO
+		#finished = true
 		
-	#velocity = dir * speed
-	#if dir.x > 0: _sprite.flip_h = false
-	#else: _sprite.flip_h = true
-	#_sprite.play("Running" + color)
-	#_sprite.speed_scale = speed/50
-	#print (finished)
+	# -- for gravity ---
+	#if not is_on_floor():
+		#velocity.y = 350
+		#move_and_slide()
+	# ---------
+	position = position.clamp(Vector2.ZERO, screen_size)
 
 func input_event(_viewport, event, _shape_idx):
 	var _last_mouse_position # variable that saves the last mouse position
@@ -90,15 +82,15 @@ func input_event(_viewport, event, _shape_idx):
 			
 
 func makepath() -> void:
-	if not finished:
-		_nav_agent.target_position = move_to
+	_nav_agent.target_position = move_to
 
 func _on_timer_timeout():
 	makepath()
 	
-func _on_navigation_agent_2d_target_reached():
-	#print(get_node("Timer").time_left)
-	finished = true
+	
+func _on_navigation_agent_2d_navigation_finished():
+	if not selected:
+		finished = true
 
 #-------POPUP MENU FUNCTIONS---------
 
@@ -110,6 +102,8 @@ func _on_popup_menu_id_pressed(id):
 
 func _on_popup_menu_index_pressed(index):
 	pass # Replace with function body.
+
+
 
 
 

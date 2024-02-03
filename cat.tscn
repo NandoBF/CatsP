@@ -151,11 +151,10 @@ wait_time = 0.25
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 1.0
 target_desired_distance = 1.0
-debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0, 1)
 
 [connection signal="input_event" from="." to="." method="input_event"]
 [connection signal="id_pressed" from="PopupMenu" to="." method="_on_popup_menu_id_pressed"]
 [connection signal="index_pressed" from="PopupMenu" to="." method="_on_popup_menu_index_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
