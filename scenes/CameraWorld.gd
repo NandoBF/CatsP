@@ -1,13 +1,13 @@
 extends Camera2D
 
 @onready var cam = get_node (".")
+@export var cam_speed = 12
 var cam_move_speed
 var initial_Position
 var screen_size
 var screen_position
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	cam_move_speed = 7
 	screen_position = get_viewport_rect().position
 	screen_size = get_viewport_rect().size
 	cam.limit_top = screen_position.y
@@ -21,7 +21,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	cam_move_speed = 7 / cam.zoom.x
+	cam_move_speed = cam_speed / cam.zoom.x
 	input()
 	handlePosition()
 	#print (cam_move_speed)

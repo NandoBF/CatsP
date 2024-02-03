@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dip2e2ykhdg54"]
 
-[ext_resource type="Script" path="res://CameraWorld.gd" id="1_l1otc"]
+[ext_resource type="Script" path="res://scenes/CameraWorld.gd" id="1_l1otc"]
 
 [node name="Player" type="Node2D"]
 
