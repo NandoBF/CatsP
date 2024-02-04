@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7iid0pmruhq"]
+[gd_scene load_steps=8 format=3 uid="uid://c7iid0pmruhq"]
 
 [ext_resource type="Script" path="res://scenes/map.gd" id="1_2j8vf"]
 [ext_resource type="Texture2D" uid="uid://pfy5ow7l2sks" path="res://assets/bg/Tileset.png" id="1_qncg2"]
+[ext_resource type="PackedScene" uid="uid://by4p50alagke4" path="res://scenes/cat.tscn" id="2_45y48"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nx70l"]
 vertices = PackedVector2Array(1020, 502, 618, 502, 618, 470, 1141, -49, 1146, 375, 1129, 393, 502, 470, 502, 502, 330, 502, 330, 374, 278, 374, 278, 502, 74, 502, 74, 470, 22, 470, 22, 502, 11, 502, 10, -46)
@@ -413,6 +414,9 @@ sources/1 = SubResource("TileSetAtlasSource_g3a0k")
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_2j8vf")
+
+[node name="Cat" parent="." instance=ExtResource("2_45y48")]
+position = Vector2(220, 424)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_nx70l")
