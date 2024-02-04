@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var color = "DarkBlue"
 
+@onready var tile_map = $"../NavigationRegion2D/TileMap"
 @onready var _pm = $PopupMenu #Popup menu
 @onready var _nav_agent = $NavigationAgent2D
 @onready var _sprite = $AnimatedSprite2D #Sprites
@@ -31,15 +32,12 @@ func _ready():
 	
 func _physics_process(delta):
 	var dir
-	
-	#if not _nav_agent.is_target_reachable():
-		#move_to = position
+	#print (tile_map.local_to_map(get_global_mouse_position()))
 		
 	if Input.is_action_pressed("Right_Click") and selected:
 		finished = false
 		selected = false
-		move_to = get_global_mouse_position()
-	#dir = self.position.direction_to(move_to) 
+		move_to = tile_map.map_to_local(tile_map.local_to_map(get_global_mouse_position()))
 	
 	if not finished and _nav_agent.is_target_reachable():
 		dir = (_nav_agent.get_next_path_position() - global_position).normalized()

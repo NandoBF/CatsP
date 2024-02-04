@@ -1,7 +1,7 @@
-extends Node2D
+extends NavigationRegion2D
 
-@onready var tile_map = $NavigationRegion2D/TileMap
-@onready var _nav_region = $NavigationRegion2D
+@onready var tile_map = $TileMap
+var building_menu = false
 var tile_map_layer = 0 
 var tile_map_cell_position = Vector2i(0,0) 
 
@@ -12,10 +12,17 @@ func _ready():
 	var tile_map_cell_atlas_coords = tile_map.get_cell_atlas_coords(tile_map_layer, tile_map_cell_position) 
 	var tile_map_cell_alternative = tile_map.get_cell_alternative_tile(tile_map_layer, tile_map_cell_position) 
 	var new_tile_map_cell_position = Vector2i(9,5)
-	tile_map.set_cell(tile_map_layer, new_tile_map_cell_position, tile_map_cell_source_id, tile_map_cell_atlas_coords, tile_map_cell_alternative)
-	_nav_region.bake_navigation_polygon()
-
+	tile_map.set_cell(tile_map_layer, new_tile_map_cell_position, 1, tile_map_cell_atlas_coords, tile_map_cell_alternative)
+	self.bake_navigation_polygon()
+	#print (tile_map_cell_source_id)
+	#print (tile_map.get_cell_source_id(tile_map_layer, Vector2i(0,0)))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#print (tile_map.local_to_map(get_global_mouse_position()))
 	pass
+	
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if Input.is_key_pressed(KEY_B):
+			building_menu = not building_menu
+	if event is InputEventMouse and building_menu:
+		get_viewport().set_input_as_handled()
