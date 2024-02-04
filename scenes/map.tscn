@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7iid0pmruhq"]
+[gd_scene load_steps=10 format=3 uid="uid://c7iid0pmruhq"]
 
 [ext_resource type="Script" path="res://scenes/map.gd" id="1_2j8vf"]
 [ext_resource type="Texture2D" uid="uid://pfy5ow7l2sks" path="res://assets/bg/Tileset.png" id="1_qncg2"]
 [ext_resource type="PackedScene" uid="uid://by4p50alagke4" path="res://scenes/cat.tscn" id="2_45y48"]
+[ext_resource type="Script" path="res://scenes/NavigationRegion.gd" id="2_srigq"]
+[ext_resource type="Script" path="res://scenes/BuildingMenu.gd" id="3_676jo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nx70l"]
 vertices = PackedVector2Array(22, 502, 11, 502, 13, 42, 22, 470, 74, 470, 42, 42, 278, 374, 1020, 502, 618, 502, 618, 470, 1142, 11, 1146, 375, 1129, 393, 502, 470, 502, 502, 330, 502, 330, 374, 278, 502, 74, 502, 42, 11)
@@ -413,16 +415,14 @@ navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_g3a0k")
 
 [node name="Map" type="Node2D"]
+script = ExtResource("1_2j8vf")
+
+[node name="BuildingMenu" type="PopupMenu" parent="."]
+script = ExtResource("3_676jo")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_nx70l")
-script = ExtResource("1_2j8vf")
-
-[node name="MenuBar" type="MenuBar" parent="NavigationRegion2D" node_paths=PackedStringArray("shortcut_context")]
-offset_top = 512.0
-offset_right = 1152.0
-offset_bottom = 648.0
-shortcut_context = NodePath("..")
+script = ExtResource("2_srigq")
 
 [node name="TileMap" type="TileMap" parent="NavigationRegion2D"]
 tile_set = SubResource("TileSet_cxwec")

@@ -1,28 +1,29 @@
-extends NavigationRegion2D
+extends Node2D
 
-@onready var tile_map = $TileMap
+@onready var _pm = $BuildingMenu
+
 var building_menu = false
-var tile_map_layer = 0 
-var tile_map_cell_position = Vector2i(0,0) 
-
-
+var screen_size
+var menusize = 200
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var tile_map_cell_source_id = tile_map.get_cell_source_id(tile_map_layer, tile_map_cell_position); 
-	var tile_map_cell_atlas_coords = tile_map.get_cell_atlas_coords(tile_map_layer, tile_map_cell_position) 
-	var tile_map_cell_alternative = tile_map.get_cell_alternative_tile(tile_map_layer, tile_map_cell_position) 
-	var new_tile_map_cell_position = Vector2i(9,5)
-	tile_map.set_cell(tile_map_layer, new_tile_map_cell_position, 1, tile_map_cell_atlas_coords, tile_map_cell_alternative)
-	self.bake_navigation_polygon()
-	#print (tile_map_cell_source_id)
-	#print (tile_map.get_cell_source_id(tile_map_layer, Vector2i(0,0)))
+	screen_size = self.get_viewport_rect().size
+	_pm.popup(Rect2(0, screen_size.y - menusize,menusize,menusize))
+	_pm.visible = building_menu
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
+
 func _unhandled_input(event):
+	#passar para map
 	if event is InputEventKey:
 		if Input.is_key_pressed(KEY_B):
 			building_menu = not building_menu
+			_pm.visible = building_menu
+			#_menu_bar.set_menu_disabled(0,not _menu_bar.is_menu_disabled(0))
+			
 	if event is InputEventMouse and building_menu:
 		get_viewport().set_input_as_handled()
+
