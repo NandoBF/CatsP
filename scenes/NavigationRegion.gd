@@ -20,3 +20,5 @@ func _ready():
 func _process(delta):
 	pass
 
+func addTile(pos):
+	tile_map.set_cell(0,Vector2i(1,1),1,pos,0)

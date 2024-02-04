@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://pfy5ow7l2sks" path="res://assets/bg/Tileset.png" id="1_qncg2"]
 [ext_resource type="PackedScene" uid="uid://by4p50alagke4" path="res://scenes/cat.tscn" id="2_45y48"]
 [ext_resource type="Script" path="res://scenes/NavigationRegion.gd" id="2_srigq"]
-[ext_resource type="Script" path="res://scenes/BuildingMenu.gd" id="3_676jo"]
+[ext_resource type="Script" path="res://scenes/BMenu.gd" id="6_00tqa"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_nx70l"]
 vertices = PackedVector2Array(22, 502, 11, 502, 13, 42, 22, 470, 74, 470, 42, 42, 278, 374, 1020, 502, 618, 502, 618, 470, 1142, 11, 1146, 375, 1129, 393, 502, 470, 502, 502, 330, 502, 330, 374, 278, 502, 74, 502, 42, 11)
@@ -417,9 +417,6 @@ sources/1 = SubResource("TileSetAtlasSource_g3a0k")
 [node name="Map" type="Node2D"]
 script = ExtResource("1_2j8vf")
 
-[node name="BuildingMenu" type="PopupMenu" parent="."]
-script = ExtResource("3_676jo")
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_nx70l")
 script = ExtResource("2_srigq")
@@ -432,4 +429,24 @@ layer_0/tile_data = PackedInt32Array(1048576, 1, 0, 1048577, 65537, 0, 1048578, 
 [node name="Cat" parent="." instance=ExtResource("2_45y48")]
 position = Vector2(220, 424)
 
+[node name="BMenu" type="Node2D" parent="."]
+script = ExtResource("6_00tqa")
+
+[node name="Blocks" type="Button" parent="BMenu"]
+offset_left = 24.0
+offset_top = 544.0
+offset_right = 96.0
+offset_bottom = 616.0
+
+[node name="BlocksList" type="ItemList" parent="BMenu/Blocks"]
+layout_mode = 0
+offset_top = -160.0
+offset_right = 104.0
+allow_reselect = true
+item_count = 2
+item_0/text = "Dirt"
+item_1/text = "Cave"
+
 [connection signal="changed" from="NavigationRegion2D/TileMap" to="NavigationRegion2D" method="_on_tile_map_changed"]
+[connection signal="pressed" from="BMenu/Blocks" to="BMenu" method="_on_blocks_pressed"]
+[connection signal="item_selected" from="BMenu/Blocks/BlocksList" to="BMenu" method="_on_blocks_list_item_selected"]
