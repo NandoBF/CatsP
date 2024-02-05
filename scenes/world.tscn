@@ -1,16 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlt85eu84mk2d"]
+[gd_scene load_steps=3 format=3 uid="uid://dlt85eu84mk2d"]
 
 [ext_resource type="Texture2D" uid="uid://db1u4f2o5w8km" path="res://assets/bg/Summer1.png" id="2_1ot4f"]
-[ext_resource type="PackedScene" uid="uid://dip2e2ykhdg54" path="res://scenes/player.tscn" id="3_stess"]
 [ext_resource type="PackedScene" uid="uid://c7iid0pmruhq" path="res://scenes/map.tscn" id="4_vkduc"]
 
 [node name="World" type="Node2D"]
 
 [node name="Summer1" type="Sprite2D" parent="."]
-position = Vector2(457.75, 324.5)
-scale = Vector2(0.607856, 0.503858)
+position = Vector2(838.75, 539)
+scale = Vector2(0.938585, 0.834877)
 texture = ExtResource("2_1ot4f")
-
-[node name="Player" parent="." instance=ExtResource("3_stess")]
 
 [node name="Map" parent="." instance=ExtResource("4_vkduc")]

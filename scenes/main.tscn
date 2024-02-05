@@ -6,10 +6,10 @@
 [node name="Main" type="Node2D"]
 
 [node name="Play" type="Button" parent="."]
-offset_left = 515.0
-offset_top = 216.0
-offset_right = 643.0
-offset_bottom = 280.0
+offset_left = 905.0
+offset_top = 411.0
+offset_right = 1033.0
+offset_bottom = 475.0
 text = "Play
 "
 script = ExtResource("1_2temp")
@@ -18,10 +18,10 @@ script = ExtResource("1_2temp")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 516.0
-offset_top = 344.0
-offset_right = 644.0
-offset_bottom = 408.0
+offset_left = 906.0
+offset_top = 539.0
+offset_right = 1034.0
+offset_bottom = 603.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

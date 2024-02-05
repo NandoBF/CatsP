@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://scenes/CameraWorld.gd" id="1_l1otc"]
 
 [node name="Player" type="Node2D"]
+metadata/_edit_vertical_guides_ = [1.0]
 
 [node name="CameraWorld" type="Camera2D" parent="."]
-position = Vector2(576, 320)
-zoom = Vector2(5, 5)
+position = Vector2(960, 540)
 limit_top = 1000000000
 limit_bottom = -1000000
 limit_smoothed = true

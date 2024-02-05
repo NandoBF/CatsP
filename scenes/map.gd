@@ -12,3 +12,7 @@ func _ready():
 func _process(delta):
 	pass
 
+func _input(event):
+	if event is InputEventKey:
+		if Input.is_key_pressed(KEY_ESCAPE):
+			get_tree().quit()

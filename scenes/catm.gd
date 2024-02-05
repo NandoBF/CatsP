@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 @export var color = "DarkBlue"
 
-@onready var tile_map = $"../NavigationRegion2D/TileMap"
+@onready var tile_map = $"../../NavigationRegion2D/TileMap"
 @onready var _pm = $PopupMenu #Popup menu
 @onready var _nav_agent = $NavigationAgent2D
 @onready var _sprite = $AnimatedSprite2D #Sprites
