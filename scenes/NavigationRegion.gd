@@ -1,9 +1,10 @@
 extends NavigationRegion2D
 
 @onready var tile_map = $TileMap
-var building_menu = false
+@onready var _BMenu = $"../BMenu"
 var tile_map_layer = 0 
 var tile_map_cell_position = Vector2i(0,0) 
+var selectedTile = "None"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,5 +21,13 @@ func _ready():
 func _process(delta):
 	pass
 
-func addTile(pos):
-	tile_map.set_cell(0,Vector2i(1,1),1,pos,0)
+func selectTile(block):
+	selectedTile = block
+	#tile_map.set_cell(0,Vector2i(1,1),1,pos,0)
+
+func _unhandled_input(event):
+	if event is InputEventMouse and _BMenu.building_menu:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and selectedTile != "None":
+			tile_map.set_cell(0,tile_map.local_to_map(get_global_mouse_position()),1,_BMenu.proDict[selectedTile],0)
+		get_viewport().set_input_as_handled()
+		

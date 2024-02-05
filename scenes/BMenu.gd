@@ -5,7 +5,8 @@ extends Node2D
 
 var building_menu = false
 var proDict = {
-	"Dirt" = Vector2i(0,0)
+	"Dirt" = Vector2i(0,0),
+	"Cave" = Vector2i(8,1)
 }
 
 
@@ -29,15 +30,13 @@ func _unhandled_input(event):
 		if Input.is_key_pressed(KEY_B):
 			building_menu = not building_menu
 			self.visible = building_menu
+			_nav_region.bake_navigation_polygon()
 			#_menu_bar.set_menu_disabled(0,not _menu_bar.is_menu_disabled(0))
 			
-	if event is InputEventMouse and building_menu:
-		get_viewport().set_input_as_handled()
-
 
 func _on_blocks_list_item_selected(index):
 	match index:
 		0:
-			_nav_region.addTile(proDict.Dirt)
+			_nav_region.selectTile("Dirt")
 		1:
-			print("1")
+			_nav_region.selectTile("Cave")
