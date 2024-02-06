@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://p7vk5mwcovuj"]
+[gd_scene load_steps=2 format=3 uid="uid://p7vk5mwcovuj"]
 
-[ext_resource type="Script" path="res://scenes/Play.gd" id="1_2temp"]
-[ext_resource type="Script" path="res://scenes/Quit.gd" id="2_fkqw0"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_pidga"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_pidga")
 
 [node name="Play" type="Button" parent="."]
 offset_left = 905.0
@@ -12,7 +12,6 @@ offset_right = 1033.0
 offset_bottom = 475.0
 text = "Play
 "
-script = ExtResource("1_2temp")
 
 [node name="Quit" type="Button" parent="."]
 anchors_preset = 5
@@ -27,7 +26,11 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Quit
 "
-script = ExtResource("2_fkqw0")
 
-[connection signal="pressed" from="Play" to="Play" method="_on_pressed"]
-[connection signal="pressed" from="Quit" to="Quit" method="_on_pressed"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

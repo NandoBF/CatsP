@@ -63,7 +63,6 @@ func _physics_process(delta):
 	position = position.clamp(Vector2.ZERO, screen_size)
 
 func input_event(_viewport, event, _shape_idx):
-	var _last_mouse_position # variable that saves the last mouse position
 	#Selects the cat in case the player clicked it
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -75,8 +74,7 @@ func input_event(_viewport, event, _shape_idx):
 
 		#Popup menu
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			_last_mouse_position = get_global_mouse_position()
-			_pm.popup(Rect2(_last_mouse_position.x, _last_mouse_position.y, _pm.size.x, _pm.size.y))
+			_pm.popup(Rect2(self.position.x, self.position.y, _pm.size.x, _pm.size.y))
 			
 
 func makepath() -> void:

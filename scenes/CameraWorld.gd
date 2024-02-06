@@ -24,7 +24,8 @@ func _process(delta):
 	cam_move_speed = cam_speed / cam.zoom.x
 	input()
 	handlePosition()
-	#print (cam_move_speed)
+	position = position.clamp(Vector2.ZERO + (self.get_viewport_rect().size / 2)/self.zoom, screen_size - (self.get_viewport_rect().size / 2)/self.zoom)
+	#print (position)
 	
 	
 #detects inputs to zoom and move the camera

@@ -8,19 +8,19 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t73xm"]
 size = Vector2(32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_v0tr0"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ac1hm"]
 atlas = ExtResource("2_q8m2y")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qdk24"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgwbs"]
 atlas = ExtResource("2_q8m2y")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_84d5i"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocegr"]
 atlas = ExtResource("2_q8m2y")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8roja"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdqqx"]
 atlas = ExtResource("2_q8m2y")
 region = Rect2(144, 0, 48, 48)
 
@@ -68,16 +68,16 @@ region = Rect2(240, 0, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_v0tr0")
+"texture": SubResource("AtlasTexture_ac1hm")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qdk24")
+"texture": SubResource("AtlasTexture_tgwbs")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_84d5i")
+"texture": SubResource("AtlasTexture_ocegr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8roja")
+"texture": SubResource("AtlasTexture_fdqqx")
 }],
 "loop": true,
 "name": &"IdleDarkBlue",
@@ -133,16 +133,15 @@ wall_min_slide_angle = 0.0
 script = ExtResource("1_q0tcj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_t73xm")
 
 [node name="PopupMenu" type="PopupMenu" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(7, -13)
+position = Vector2(7, -12)
 scale = Vector2(1.167, 1.167)
 sprite_frames = SubResource("SpriteFrames_c852n")
-animation = &"IdleOrange"
+animation = &"IdleDarkBlue"
 autoplay = "IdleDarkBlue"
 
 [node name="Timer" type="Timer" parent="."]
