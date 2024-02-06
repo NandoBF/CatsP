@@ -21,8 +21,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-
+	if building_menu:
+		self.position = Vector2(_cam.get_screen_center_position().x - (_cam.get_viewport_rect().size.x / 2)/_cam.zoom.x,_cam.get_screen_center_position().y + (_cam.get_viewport_rect().size.y / 2)/_cam.zoom.y)
+		self.scale = Vector2(1,1) / _cam.zoom
 
 func _on_blocks_pressed():
 	_blockslist.visible = not _blockslist.visible
@@ -31,7 +32,6 @@ func _unhandled_input(event):
 	#passar para map
 	if event is InputEventKey:
 		if Input.is_key_pressed(KEY_B):
-			self.position = Vector2(_cam.get_viewport_rect().size.x,_cam.get_viewport_rect().size.y)
 			building_menu = not building_menu
 			self.visible = building_menu
 			_nav_region.bake_navigation_polygon()
