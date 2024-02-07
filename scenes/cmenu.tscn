@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=3 uid="uid://cogwpmxovpfck"]
+
+[ext_resource type="SpriteFrames" uid="uid://d4lt1injqnnr0" path="res://assets/RES/cat.tres" id="1_ngjaw"]
+
+[node name="CMenu" type="Node2D"]
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_left = -128.0
+offset_bottom = 200.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -120.0
+offset_top = 8.0
+offset_right = -72.0
+offset_bottom = 56.0
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(32, 0)
+scale = Vector2(1.5835, 1.5835)
+sprite_frames = ExtResource("1_ngjaw")
+animation = &"IdleDarkBlue"
+autoplay = "IdleDarkBlue"
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_left = -56.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 24.0
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="TextEdit2" type="TextEdit" parent="."]
+offset_left = -56.0
+offset_top = 40.0
+offset_right = -8.0
+offset_bottom = 56.0
+editable = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="."]
+offset_left = -120.0
+offset_top = 72.0
+offset_right = -8.0
+offset_bottom = 96.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Button2" type="Button" parent="."]
+offset_left = -120.0
+offset_top = 136.0
+offset_right = -8.0
+offset_bottom = 160.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Button3" type="Button" parent="."]
+offset_left = -120.0
+offset_top = 104.0
+offset_right = -8.0
+offset_bottom = 128.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Button4" type="Button" parent="."]
+offset_left = -120.0
+offset_top = 168.0
+offset_right = -8.0
+offset_bottom = 192.0
+metadata/_edit_use_anchors_ = true

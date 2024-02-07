@@ -7,6 +7,8 @@ extends CharacterBody2D
 @onready var _pm = $PopupMenu #Popup menu
 @onready var _nav_agent = $NavigationAgent2D
 @onready var _sprite = $AnimatedSprite2D #Sprites
+@onready var _cam = $"../../Player/CameraWorld"
+@onready var _CMenu = $"../CMenu"
 
 var finished
 var speed = 75
@@ -33,6 +35,12 @@ func _ready():
 func _physics_process(delta):
 	var dir
 	#print (tile_map.local_to_map(get_global_mouse_position()))
+	if selected: #Fazer menu nova cena
+		_CMenu.scale = Vector2(1,1) / _cam.zoom
+		_CMenu.position = Vector2(_cam.get_screen_center_position().x + (_cam.get_viewport_rect().size.x / 2)/_cam.zoom.x,_cam.get_screen_center_position().y - (_cam.get_viewport_rect().size.y / 2)/_cam.zoom.y)
+		_CMenu.visible = true
+	else:
+		_CMenu.visible = false
 		
 	if Input.is_action_pressed("Right_Click") and selected:
 		finished = false

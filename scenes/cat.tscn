@@ -1,128 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://by4p50alagke4"]
+[gd_scene load_steps=4 format=3 uid="uid://by4p50alagke4"]
 
 [ext_resource type="Script" path="res://scenes/catm.gd" id="1_q0tcj"]
-[ext_resource type="Texture2D" uid="uid://cvsw3xmeuchxm" path="res://assets/cats/idle/IdleDarkBlue.png" id="2_q8m2y"]
-[ext_resource type="Texture2D" uid="uid://ci2kwwndr7o8g" path="res://assets/cats/Running/Walk.png" id="3_d2hv1"]
-[ext_resource type="Texture2D" uid="uid://dkjf7vb34muhj" path="res://assets/cats/idle/IdleOrange.png" id="3_gltx5"]
+[ext_resource type="SpriteFrames" uid="uid://d4lt1injqnnr0" path="res://assets/RES/cat.tres" id="2_tr3bt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t73xm"]
 size = Vector2(32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ac1hm"]
-atlas = ExtResource("2_q8m2y")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tgwbs"]
-atlas = ExtResource("2_q8m2y")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ocegr"]
-atlas = ExtResource("2_q8m2y")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fdqqx"]
-atlas = ExtResource("2_q8m2y")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n2sv1"]
-atlas = ExtResource("3_gltx5")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_irmnv"]
-atlas = ExtResource("3_gltx5")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ucd08"]
-atlas = ExtResource("3_gltx5")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lla1a"]
-atlas = ExtResource("3_gltx5")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ppu3v"]
-atlas = ExtResource("3_d2hv1")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g4jd3"]
-atlas = ExtResource("3_d2hv1")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hsxvs"]
-atlas = ExtResource("3_d2hv1")
-region = Rect2(96, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wa1ug"]
-atlas = ExtResource("3_d2hv1")
-region = Rect2(144, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bwswl"]
-atlas = ExtResource("3_d2hv1")
-region = Rect2(192, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_70v2e"]
-atlas = ExtResource("3_d2hv1")
-region = Rect2(240, 0, 48, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_c852n"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ac1hm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tgwbs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ocegr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fdqqx")
-}],
-"loop": true,
-"name": &"IdleDarkBlue",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n2sv1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_irmnv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ucd08")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lla1a")
-}],
-"loop": true,
-"name": &"IdleOrange",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ppu3v")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_g4jd3")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_hsxvs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wa1ug")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bwswl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_70v2e")
-}],
-"loop": true,
-"name": &"RunningDarkBlue",
-"speed": 6.0
-}]
 
 [node name="Cat" type="CharacterBody2D"]
 light_mask = 2
@@ -140,7 +22,7 @@ shape = SubResource("RectangleShape2D_t73xm")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(7, -12)
 scale = Vector2(1.167, 1.167)
-sprite_frames = SubResource("SpriteFrames_c852n")
+sprite_frames = ExtResource("2_tr3bt")
 animation = &"IdleDarkBlue"
 autoplay = "IdleDarkBlue"
 
