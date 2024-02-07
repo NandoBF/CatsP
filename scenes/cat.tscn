@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://by4p50alagke4"]
+[gd_scene load_steps=5 format=3 uid="uid://by4p50alagke4"]
 
 [ext_resource type="Script" path="res://scenes/catm.gd" id="1_q0tcj"]
+[ext_resource type="Resource" uid="uid://cpndwe3tdqhhq" path="res://scenes/supp/CharacterClass.tres" id="2_ow0t7"]
 [ext_resource type="SpriteFrames" uid="uid://d4lt1injqnnr0" path="res://assets/RES/cat.tres" id="2_tr3bt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t73xm"]
@@ -13,6 +14,7 @@ input_pickable = true
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_q0tcj")
+stats = ExtResource("2_ow0t7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t73xm")

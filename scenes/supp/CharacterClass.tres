@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="characterstats" load_steps=2 format=3 uid="uid://cpndwe3tdqhhq"]
+
+[ext_resource type="Script" path="res://scenes/supp/charclass.gd" id="1_dw4o0"]
+
+[resource]
+script = ExtResource("1_dw4o0")
+type = 0
+color = "DarkBlue"
+job = 0

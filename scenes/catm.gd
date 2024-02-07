@@ -1,20 +1,20 @@
 extends CharacterBody2D
 
 
-@export var color = "DarkBlue"
+@export var stats: Resource
 
-@onready var tile_map = $"../../NavigationRegion2D/TileMap"
+@onready var tile_map = $"../../../NavigationRegion2D/TileMap"
 @onready var _pm = $PopupMenu #Popup menu
 @onready var _nav_agent = $NavigationAgent2D
 @onready var _sprite = $AnimatedSprite2D #Sprites
-@onready var _cam = $"../../Player/CameraWorld"
+@onready var _cam = $"../../../Player/CameraWorld"
 @onready var _CMenu = $"../CMenu"
 
 var finished
 var speed = 75
 var move_to
 var screen_size # saves the screen size
-var selected = false # Bool that says if the cat is selected
+var selected # Bool that says if the cat is selected
 
 enum PopupIds {
 	colorOrange
@@ -22,11 +22,13 @@ enum PopupIds {
 
 
 func _ready():
+	#self.position = Vector2(100,100)
+	selected = false
 	finished = true
 	get_node("Timer").start()
 	screen_size = get_viewport_rect().size
 	move_to = position
-	_sprite.play("Idle" + color)
+	_sprite.play("Idle" + stats.color)
 	
 	#Adds items to the popup menu
 	_pm.add_item("Orange", PopupIds.colorOrange)
@@ -41,23 +43,24 @@ func _physics_process(delta):
 		_CMenu.visible = true
 	else:
 		_CMenu.visible = false
-		
+
 	if Input.is_action_pressed("Right_Click") and selected:
 		finished = false
 		selected = false
 		move_to = tile_map.map_to_local(tile_map.local_to_map(get_global_mouse_position()))
-	
+		
+		
 	if not finished and _nav_agent.is_target_reachable():
-		dir = (_nav_agent.get_next_path_position() - global_position).normalized()
-		translate(dir * delta * speed)
+		dir = (_nav_agent.get_next_path_position() - self.get_global_position()).normalized()
+		self.translate(dir * delta * speed)
 		if dir.x > 0: _sprite.flip_h = false
 		else: _sprite.flip_h = true
-		_sprite.play("Running" + color)
+		_sprite.play("Running" + stats.color)
 		_sprite.speed_scale = speed/50
 	else:
 		move_to = position
 		_sprite.speed_scale = 1
-		_sprite.play("Idle" + color)
+		_sprite.play("Idle" + stats.color)
 		
 	
 	#if self.position.distance_to(move_to) < 1:
@@ -68,9 +71,13 @@ func _physics_process(delta):
 		#velocity.y = 350
 		#move_and_slide()
 	# ---------
-	position = position.clamp(Vector2.ZERO, screen_size)
+	self.position = self.position.clamp(Vector2.ZERO, screen_size)
+	
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		selected = false
 
-func input_event(_viewport, event, _shape_idx):
+func input_event(_viewport, event, shape_idx):
 	#Selects the cat in case the player clicked it
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -101,7 +108,7 @@ func _on_navigation_agent_2d_navigation_finished():
 func _on_popup_menu_id_pressed(id):
 	match id:
 		PopupIds.colorOrange:
-			color = "Orange"
+			stats.color = "Orange"
 
 
 func _on_popup_menu_index_pressed(index):

@@ -24,21 +24,37 @@ sprite_frames = ExtResource("1_ngjaw")
 animation = &"IdleDarkBlue"
 autoplay = "IdleDarkBlue"
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -56.0
 offset_top = 8.0
 offset_right = -8.0
 offset_bottom = 24.0
-editable = false
-metadata/_edit_use_anchors_ = true
+color = Color(0, 0, 0, 1)
 
-[node name="TextEdit2" type="TextEdit" parent="."]
+[node name="Type" type="Label" parent="."]
+offset_left = -56.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 32.0
+scale = Vector2(1, 0.68)
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect2" type="ColorRect" parent="."]
 offset_left = -56.0
 offset_top = 40.0
 offset_right = -8.0
 offset_bottom = 56.0
-editable = false
-metadata/_edit_use_anchors_ = true
+color = Color(0, 0, 0, 1)
+
+[node name="Job" type="Label" parent="."]
+offset_left = -56.0
+offset_top = 40.0
+offset_right = -16.0
+offset_bottom = 64.0
+scale = Vector2(1.2, 0.675449)
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 offset_left = -120.0

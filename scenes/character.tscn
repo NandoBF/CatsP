@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0af6n00pxbxn"]
+
+[ext_resource type="PackedScene" uid="uid://by4p50alagke4" path="res://scenes/cat.tscn" id="1_561qa"]
+[ext_resource type="PackedScene" uid="uid://cogwpmxovpfck" path="res://scenes/cmenu.tscn" id="2_00se6"]
+[ext_resource type="Script" path="res://scenes/cmenu.gd" id="3_cejcc"]
+
+[node name="Character" type="Node2D"]
+
+[node name="Cat" parent="." instance=ExtResource("1_561qa")]
+
+[node name="CMenu" parent="." instance=ExtResource("2_00se6")]
+visible = false
+script = ExtResource("3_cejcc")
