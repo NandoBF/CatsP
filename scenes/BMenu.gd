@@ -3,6 +3,7 @@ extends Node2D
 @onready var _blockslist = $Blocks/BlocksList
 @onready var _nav_region = $"../NavigationRegion2D"
 @onready var _cam = $"../Player/CameraWorld"
+@onready var tile_map = $"../NavigationRegion2D/TileMap"
 
 var screen_size
 var building_menu = false
