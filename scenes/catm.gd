@@ -11,7 +11,7 @@ extends CharacterBody2D
 @onready var _CMenu = $"../CMenu"
 
 var finished
-var speed = 75
+var speed
 var move_to
 var screen_size # saves the screen size
 var selected # Bool that says if the cat is selected
@@ -23,6 +23,7 @@ enum PopupIds {
 
 func _ready():
 	#self.position = Vector2(100,100)
+	speed = stats.moving_speed
 	selected = false
 	finished = true
 	get_node("Timer").start()

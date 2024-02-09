@@ -27,22 +27,17 @@ func selectTile(block):
 	#tile_map.set_cell(0,Vector2i(1,1),1,pos,0)
 
 func _unhandled_input(event):
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and selectedTile != "None":
-		var ini_mouse = tile_map.local_to_map(get_global_mouse_position())
-		terrain = []
-		if ini_mouse not in forbidden_pos:
-			#tile_map.set_cell(0,tile_map.local_to_map(get_global_mouse_position()),1,_BMenu.proDict[selectedTile],0)
-			if selectedTile == "Dirt":
-				terrain.append(tile_map.local_to_map(get_global_mouse_position()))
-				tile_map.set_cells_terrain_connect(0,terrain,0,0,false)
-	
 	if event is InputEventMouse and _BMenu.building_menu:
-			get_viewport().set_input_as_handled()
-		#if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and selectedTile != "None":
-			#var ini_mouse = tile_map.local_to_map(get_global_mouse_position())
-			#if ini_mouse not in forbidden_pos:
+		if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and selectedTile != "None":
+			var ini_mouse = tile_map.local_to_map(get_global_mouse_position())
+			terrain = []
+			if ini_mouse not in forbidden_pos:
 				#tile_map.set_cell(0,tile_map.local_to_map(get_global_mouse_position()),1,_BMenu.proDict[selectedTile],0)
-				#tile_map.set_cells_terrain_connect(0,terrain,0,0,true)
-		#get_viewport().set_input_as_handled()
+				if selectedTile == "Dirt":
+					terrain.append(tile_map.local_to_map(get_global_mouse_position()))
+					tile_map.set_cells_terrain_connect(1,terrain,0,0,false)
+				if selectedTile == "Cave":
+					tile_map.erase_cell(1,tile_map.local_to_map(get_global_mouse_position()))
+		get_viewport().set_input_as_handled()
 		
 
