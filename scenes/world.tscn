@@ -11,3 +11,5 @@ scale = Vector2(0.938585, 0.834877)
 texture = ExtResource("2_1ot4f")
 
 [node name="Map" parent="." instance=ExtResource("4_vkduc")]
+
+[node name="save_script" type="Node" parent="."]

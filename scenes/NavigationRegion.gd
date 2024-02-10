@@ -12,9 +12,8 @@ var terrain = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self.bake_navigation_polygon()
-	#print (tile_map_cell_source_id)
-	#print (tile_map.get_cell_source_id(tile_map_layer, Vector2i(0,0)))
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	forbidden_pos = []
 	for child in _characters.get_children():

@@ -41,6 +41,7 @@ func _physics_process(delta):
 	if selected: #Fazer menu nova cena
 		_CMenu.scale = Vector2(1,1) / _cam.zoom
 		_CMenu.position = Vector2(_cam.get_screen_center_position().x + (_cam.get_viewport_rect().size.x / 2)/_cam.zoom.x,_cam.get_screen_center_position().y - (_cam.get_viewport_rect().size.y / 2)/_cam.zoom.y)
+		get_node("../CMenu/Panel/AnimatedSprite2D2").animation = _sprite.animation
 		_CMenu.visible = true
 	else:
 		_CMenu.visible = false

@@ -1386,6 +1386,8 @@ layer_1/tile_data = PackedInt32Array()
 
 [node name="Cow" parent="Characters" instance=ExtResource("7_3l4b0")]
 
+[node name="Node2D" type="Node2D" parent="."]
+
 [node name="BMenu" type="Node2D" parent="."]
 script = ExtResource("6_00tqa")
 
