@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dlt85eu84mk2d"]
+[gd_scene load_steps=5 format=3 uid="uid://dlt85eu84mk2d"]
 
+[ext_resource type="Script" path="res://scenes/world.gd" id="1_aoaw3"]
 [ext_resource type="Texture2D" uid="uid://db1u4f2o5w8km" path="res://assets/bg/Summer1.png" id="2_1ot4f"]
+[ext_resource type="PackedScene" uid="uid://cyshcubbgq4x7" path="res://scenes/objects/farm/wheat_growth_1.tscn" id="3_4piew"]
 [ext_resource type="PackedScene" uid="uid://c7iid0pmruhq" path="res://scenes/map.tscn" id="4_vkduc"]
 
 [node name="World" type="Node2D"]
+script = ExtResource("1_aoaw3")
 
 [node name="Summer1" type="Sprite2D" parent="."]
 position = Vector2(838.75, 539)
@@ -13,3 +16,12 @@ texture = ExtResource("2_1ot4f")
 [node name="Map" parent="." instance=ExtResource("4_vkduc")]
 
 [node name="save_script" type="Node" parent="."]
+
+[node name="Objects" type="Node" parent="."]
+
+[node name="WheatGrowth1" parent="Objects" instance=ExtResource("3_4piew")]
+position = Vector2(720, 440)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

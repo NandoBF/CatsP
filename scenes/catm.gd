@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 @export var stats: Resource
+@export var tasks: Resource
 
 @onready var tile_map = $"../../../NavigationRegion2D/TileMap"
 @onready var _pm = $PopupMenu #Popup menu
@@ -10,23 +11,24 @@ extends CharacterBody2D
 @onready var _cam = $"../../../Player/CameraWorld"
 @onready var _CMenu = $"../CMenu"
 
-var finished
-var speed
-var move_to
+var finished # defines if it has finished its movement
+var speed # defined as the movement_speed
+var move_to # his target coordinates
 var screen_size # saves the screen size
 var selected # Bool that says if the cat is selected
 
-enum PopupIds {
+enum PopupIds { # to be removed
 	colorOrange
 }
 
 
 func _ready():
+	_nav_agent.set_navigation_layer_value(2,true) # navigation layer setter, not activated
 	#self.position = Vector2(100,100)
 	speed = stats.moving_speed
 	selected = false
 	finished = true
-	get_node("Timer").start()
+	get_node("Timer").start() # starts the path timer, should change to free space
 	screen_size = get_viewport_rect().size
 	move_to = position
 	_sprite.play("Idle" + stats.color)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://btjo4pi0t8cm0"]
+
+[ext_resource type="Script" path="res://scenes/objects/farm/ageingcomponent.gd" id="1_ov08o"]
+[ext_resource type="Texture2D" uid="uid://cjw2oh0ll522v" path="res://sPlayer/sBasic.png" id="1_qaue4"]
+[ext_resource type="PackedScene" uid="uid://c2ebhuyw10st2" path="res://scenes/objects/farm/wheat_growth_3.tscn" id="2_v3kyr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uw6ya"]
+size = Vector2(16, 16)
+
+[node name="WheatGrowth2" type="Area2D"]
+modulate = Color(0.686275, 0.247059, 0.972549, 1)
+collision_layer = 512
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -8)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("1_qaue4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uw6ya")
+
+[node name="Ageing" type="Node" parent="."]
+script = ExtResource("1_ov08o")
+age_limit = 3.0
+next_scene = ExtResource("2_v3kyr")

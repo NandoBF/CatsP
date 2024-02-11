@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://by4p50alagke4"]
+[gd_scene load_steps=6 format=3 uid="uid://by4p50alagke4"]
 
 [ext_resource type="Script" path="res://scenes/catm.gd" id="1_q0tcj"]
 [ext_resource type="Resource" uid="uid://cpndwe3tdqhhq" path="res://scenes/supp/CharacterClass.tres" id="2_ow0t7"]
 [ext_resource type="SpriteFrames" uid="uid://d4lt1injqnnr0" path="res://assets/RES/cat.tres" id="2_tr3bt"]
+[ext_resource type="Resource" uid="uid://cwko8x208t660" path="res://scenes/supp/CharacterTasks.tres" id="3_yobsk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t73xm"]
 size = Vector2(32, 32)
@@ -15,6 +16,7 @@ motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_q0tcj")
 stats = ExtResource("2_ow0t7")
+tasks = ExtResource("3_yobsk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t73xm")
@@ -34,6 +36,7 @@ wait_time = 0.25
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 path_desired_distance = 1.0
 target_desired_distance = 1.0
+navigation_layers = 3
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(0, 1, 0, 1)

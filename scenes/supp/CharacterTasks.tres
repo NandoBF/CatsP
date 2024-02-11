@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CharacterTasks" load_steps=2 format=3 uid="uid://cwko8x208t660"]
+
+[ext_resource type="Script" path="res://scenes/supp/charactertasks.gd" id="1_5msyd"]
+
+[resource]
+script = ExtResource("1_5msyd")
+current_task = ""
+task_list = []
