@@ -4,5 +4,6 @@
 
 [resource]
 script = ExtResource("1_5msyd")
-current_task = ""
-task_list = []
+current_action = ""
+current_task = {}
+task_list = {}
