@@ -1,19 +1,37 @@
 extends Resource
 class_name CharacterTasks
 
-signal assigned_task(task: Dictionary)
+signal assign_task()
+signal assign_done()
 signal task_completed()
 signal location_reached()
 
+#used only for debugging
+var saved_tasksPersisent = { 
+"tasks": [{
+"id": 0,
+"location": Vector2i(2, 9),
+"prio": 1,
+"type": "Farming"
+}, {
+"id": 1,
+"location": Vector2i(3, 15),
+"prio": 2,
+"type": "Moving"
+}]
+}
+
+static var taskfile = "res://save/savedtasks.tres"
 @export var current_action: String
 @export var current_task: Dictionary:
 	set(value):
-		if task_list.tasks == []:
-			current_task = {}
-		else:
-			current_task = task_list["tasks"][0]
-			emit_signal("assigned_task", current_task)
-			task_list.tasks.remove_at(0)
+		print(value)
+		if value != {}:
+			print("task assigned")
+			current_task = task_list.tasks[0]
+			emit_signal("assign_done")
+		elif current_task == {}:
+			emit_signal("assign_task")
 			
 @export var task_list: Dictionary
 var finished_task: bool:
@@ -21,12 +39,13 @@ var finished_task: bool:
 		if current_task == {}:
 			finished_task = true
 			
-var task_position: Vector2:
+var task_position: Vector2i:
 	set(value):
 		if current_task != {}:
-			task_position = current_task.location
+			task_position = value
 		else:
-			task_position = Vector2(40,190)
+			task_position = Vector2i(100,100)
+
 var task_reached: bool:
 	get:
 		if task_reached:
@@ -34,27 +53,49 @@ var task_reached: bool:
 			return true
 		else:
 			return false
+			
 var id = 0
+var can_use_file: bool
 
 func _init():
-	assigned_task.connect(_on_assigned_task)
+	task_position = Vector2i(100,100) # tirar isto para mexer
+	assign_task.connect(_on_assign_task)
+	assign_done.connect(_on_assign_done)
 	task_completed.connect(_on_task_completed)
-	task_list = { "tasks":
-		[ {"id": id,"type": "Farming", "prio": 1, "location": Vector2(200,900)}
-		, {"id": id + 1, "type": "Moving", "prio": 2, "localization": Vector2(3,15)}
-		
-		]
-	}
+	#saveTaskData()
+
 func _ready():
-	task_position
+	pass #does nothing
+	
 
-
-func _on_assigned_task(task):
+#Function that assigns a task to a character
+func _on_assign_task():
 	finished_task = false
-	task_position = task.location
+	loadTaskData()
+	set("current_task",task_list.tasks[0])
+	
+func _on_assign_done():
+	task_list.tasks.remove_at(0)
+	set("task_position",current_task.location)
+	saveTaskData()
 	
 func _on_task_completed():
 	finished_task = true
 	current_action = "None"
 	
 	
+func saveTaskData():
+	var file = FileAccess.open(taskfile, FileAccess.WRITE)
+	var saved_tasks:SavedTasks = SavedTasks.new()
+	#print(saved_tasks)
+	saved_tasks.saved_tasks = task_list
+	ResourceSaver.save(saved_tasks,taskfile)
+	file.close()
+	
+func loadTaskData():
+	var file = FileAccess.open(taskfile, FileAccess.READ)
+	var saved_tasks:SavedTasks = load(taskfile) as SavedTasks
+	task_list = saved_tasks.saved_tasks
+	file.close()
+
+

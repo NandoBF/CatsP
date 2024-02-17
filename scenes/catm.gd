@@ -30,7 +30,7 @@ func _ready():
 	finished = true
 	get_node("Timer").start() # starts the path timer, should change to free space
 	screen_size = get_viewport_rect().size
-	move_to = tile_map.map_to_local(tile_map.local_to_map(tasks.task_position))
+	move_to = tile_map.map_to_local(tasks.task_position)
 	_sprite.play("Idle" + stats.color)
 	
 	#Adds items to the popup menu
@@ -38,8 +38,7 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	move_to = tile_map.map_to_local(tile_map.local_to_map(tasks.task_position))
-	print(move_to)
+	print(tasks.current_task)
 	var dir
 	if selected: #Fazer menu nova cena
 		_CMenu.scale = Vector2(1,1) / _cam.zoom
@@ -62,7 +61,7 @@ func _physics_process(delta):
 		_sprite.play("Running" + stats.color)
 		_sprite.speed_scale = speed/50
 	else:
-		move_to = tile_map.map_to_local(tile_map.local_to_map(tasks.task_position))
+		move_to = tile_map.map_to_local(tasks.task_position)
 		_sprite.speed_scale = 1
 		_sprite.play("Idle" + stats.color)
 		
@@ -97,7 +96,8 @@ func input_event(_viewport, event, shape_idx):
 			
 
 func makepath() -> void:
-	_nav_agent.target_position = move_to
+	if move_to != tile_map.map_to_local(Vector2i(100,100)):
+		_nav_agent.target_position = move_to
 
 func _on_timer_timeout():
 	makepath()
