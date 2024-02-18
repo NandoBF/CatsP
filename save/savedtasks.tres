@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ojkuk")
-saved_tasks = { 
+saved_tasks = {
 "tasks": [{
 "id": 0,
 "location": Vector2i(2, 9),

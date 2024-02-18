@@ -77,7 +77,7 @@ func _on_assign_task():
 func _on_assign_done():
 	task_list.tasks.remove_at(0)
 	set("task_position",current_task.location)
-	saveTaskData()
+	#saveTaskData()
 	
 func _on_task_completed():
 	finished_task = true
