@@ -21,19 +21,18 @@ var saved_tasksPersisent = {
 }]
 }
 
-static var taskfile = "res://save/savedtasks.tres"
+@export var tasks = load("res://save/savedtasks.tres")
+
 @export var current_action: String
 @export var current_task: Dictionary:
 	set(value):
-		print(value)
 		if value != {}:
 			print("task assigned")
-			current_task = task_list.tasks[0]
+			current_task = value
 			emit_signal("assign_done")
 		elif current_task == {}:
 			emit_signal("assign_task")
 			
-@export var task_list: Dictionary
 var finished_task: bool:
 	set(value):
 		if current_task == {}:
@@ -71,31 +70,19 @@ func _ready():
 #Function that assigns a task to a character
 func _on_assign_task():
 	finished_task = false
-	loadTaskData()
-	set("current_task",task_list.tasks[0])
+	set("current_task",tasks.assign_task())
 	
 func _on_assign_done():
-	task_list.tasks.remove_at(0)
 	set("task_position",current_task.location)
 	#saveTaskData()
 	
 func _on_task_completed():
 	finished_task = true
 	current_action = "None"
+	current_task = {}
 	
+#func _update():
+	#if current_task == {}:
+		#emit_signal()
 	
-func saveTaskData():
-	var file = FileAccess.open(taskfile, FileAccess.WRITE)
-	var saved_tasks:SavedTasks = SavedTasks.new()
-	#print(saved_tasks)
-	saved_tasks.saved_tasks = task_list
-	ResourceSaver.save(saved_tasks,taskfile)
-	file.close()
-	
-func loadTaskData():
-	var file = FileAccess.open(taskfile, FileAccess.READ)
-	var saved_tasks:SavedTasks = load(taskfile) as SavedTasks
-	task_list = saved_tasks.saved_tasks
-	file.close()
-
 

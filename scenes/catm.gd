@@ -38,7 +38,6 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	print(tasks.current_task)
 	var dir
 	if selected: #Fazer menu nova cena
 		_CMenu.scale = Vector2(1,1) / _cam.zoom

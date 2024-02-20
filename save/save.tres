@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Save" load_steps=2 format=3 uid="uid://n7vjtixo5g1q"]
+
+[ext_resource type="Script" path="res://save/save.gd" id="1_e2sai"]
+
+[resource]
+script = ExtResource("1_e2sai")
+saved_tasks = {
+"tasks": [{
+"id": 0,
+"location": Vector2i(2, 9),
+"prio": 1,
+"type": "Farming"
+}, {
+"id": 1,
+"location": Vector2i(3, 15),
+"prio": 2,
+"type": "Moving"
+}]
+}

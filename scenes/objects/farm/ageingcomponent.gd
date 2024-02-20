@@ -1,6 +1,7 @@
 extends Node
 class_name AgeingComponent
 
+var saved_tasks = load("res://save/savedtasks.tres")
 
 signal age_changed(new_age: float, last_age: float)
 signal age_limit_reached(new_scene: Node2D)
@@ -18,13 +19,18 @@ signal age_limit_reached(new_scene: Node2D)
 				_limit_reached = true
 				if next_scene != null:
 					new_scene = _create_next_scene()
+				else:
+					issue_task()
 				emit_signal("age_limit_reached", new_scene)
-				target.queue_free()
+				
+				
+				
 @export var age_limit = 1.0
 @export var next_scene: PackedScene
 var _limit_reached = false
 
 static var group_name = "Ageing"
+
 
 func _ready():
 	if target == null:
@@ -35,4 +41,9 @@ func _create_next_scene() -> Node2D:
 	var instance:Node2D = next_scene.instantiate()
 	target.get_parent().add_child(instance)
 	instance.global_transform = target.global_transform
+	get_parent().queue_free()
 	return instance
+
+func issue_task():
+	saved_tasks._on_add_task(get_parent().position)
+

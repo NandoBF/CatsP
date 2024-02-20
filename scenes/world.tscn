@@ -22,6 +22,8 @@ texture = ExtResource("2_1ot4f")
 [node name="WheatGrowth1" parent="Objects" instance=ExtResource("3_4piew")]
 position = Vector2(720, 440)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="Age_Progress" type="Timer" parent="."]
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="Character_Update" type="Timer" parent="."]
+
+[connection signal="timeout" from="Age_Progress" to="." method="_on_timer_timeout"]

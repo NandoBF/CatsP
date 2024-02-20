@@ -4,8 +4,8 @@ var age_amount_on_timeout = 0.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	get_node("Timer").start()
-
+	get_node("Age_Progress").start()
+	get_node("Character_Update").start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
