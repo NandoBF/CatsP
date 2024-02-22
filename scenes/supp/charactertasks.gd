@@ -29,10 +29,10 @@ var saved_tasksPersisent = {
 		if value != {}:
 			print("task assigned")
 			current_task = value
+			#print(current_task)
 			emit_signal("assign_done")
-		elif current_task == {}:
+		else:
 			emit_signal("assign_task")
-			
 var finished_task: bool:
 	set(value):
 		if current_task == {}:
@@ -79,10 +79,5 @@ func _on_assign_done():
 func _on_task_completed():
 	finished_task = true
 	current_action = "None"
-	current_task = {}
-	
-#func _update():
-	#if current_task == {}:
-		#emit_signal()
 	
 

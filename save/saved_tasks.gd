@@ -1,7 +1,6 @@
 class_name SavedTasks
 extends Resource
 
-
 @export var task_list: Dictionary
 @export var file_opened: bool
 static var taskfile = "res://save/save.tres"
@@ -12,6 +11,7 @@ var default_prio = 2
 func _init():
 	current_id = 10
 	loadTaskData()
+	#print(task_list)
 	
 
 func assign_task():
@@ -34,6 +34,7 @@ func saveTaskData():
 	saved_tasks.saved_tasks = task_list
 	ResourceSaver.save(saved_tasks,taskfile)
 	file.close()
+	
 
 func loadTaskData():
 	var file = FileAccess.open(taskfile, FileAccess.READ)

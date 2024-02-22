@@ -23,7 +23,6 @@ texture = ExtResource("2_1ot4f")
 position = Vector2(720, 440)
 
 [node name="Age_Progress" type="Timer" parent="."]
-
-[node name="Character_Update" type="Timer" parent="."]
+wait_time = 0.1
 
 [connection signal="timeout" from="Age_Progress" to="." method="_on_timer_timeout"]
